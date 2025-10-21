@@ -4,6 +4,24 @@ _JavaDiameter_ is a library for supporting the diameter protocol. It contains ra
 
 It is designed to be lean and mean with as few dependencies as possible.
 
+## Spring Boot distribution
+
+The code base now ships as a Spring Boot application that exposes a small HTTP API for creating capability exchange messages. This makes it easy to experiment with the library from modern frameworks while keeping the original packages intact.
+
+To launch the demo service run:
+
+```
+mvn spring-boot:run
+```
+
+Once the application has started you can request a sample diameter message using the `/api/diameter/capabilities` endpoint:
+
+```
+curl 'http://localhost:8080/api/diameter/capabilities?originHost=test-host&originRealm=example.com'
+```
+
+The response describes the generated diameter message and returns the encoded payload in hexadecimal form.
+
 ## Dependencies ##
 One. My JavaSCTP library (available at http://i1.dk/JavaSCTP/). You can disable that dependency by editing the makefile.
 

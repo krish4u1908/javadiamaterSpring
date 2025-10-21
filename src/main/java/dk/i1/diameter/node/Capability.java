@@ -152,17 +152,46 @@ public class Capability {
 	/**
 	 * Returns if no applications are allowed/supported
 	 */
-	public boolean isEmpty() {
-		return auth_app.isEmpty() &&
-		       acct_app.isEmpty() &&
-		       auth_vendor.isEmpty() &&
-		       acct_vendor.isEmpty();
-	}
-	
-	/**
-	 * Create a capability intersection.
-	 */
-	public static Capability calculateIntersection(Capability us, Capability peer) {
+        public boolean isEmpty() {
+                return auth_app.isEmpty() &&
+                       acct_app.isEmpty() &&
+                       auth_vendor.isEmpty() &&
+                       acct_vendor.isEmpty();
+        }
+
+        /**
+         * Exposes the supported vendor identifiers as an unmodifiable set.
+         * @return Supported vendor identifiers.
+         * @since 1.1.0
+         */
+        public Set<Integer> getSupportedVendors() {
+                return Collections.unmodifiableSet(supported_vendor);
+        }
+
+        /**
+         * Exposes the configured authentication application identifiers as an
+         * unmodifiable set.
+         * @return Authentication application identifiers.
+         * @since 1.1.0
+         */
+        public Set<Integer> getAuthApps() {
+                return Collections.unmodifiableSet(auth_app);
+        }
+
+        /**
+         * Exposes the configured accounting application identifiers as an
+         * unmodifiable set.
+         * @return Accounting application identifiers.
+         * @since 1.1.0
+         */
+        public Set<Integer> getAcctApps() {
+                return Collections.unmodifiableSet(acct_app);
+        }
+
+        /**
+         * Create a capability intersection.
+         */
+        public static Capability calculateIntersection(Capability us, Capability peer) {
 		//assumption: we are not a relay
 		Capability c = new Capability();
 		for(Integer vendor_id : peer.supported_vendor) {

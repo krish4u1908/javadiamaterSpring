@@ -1,6 +1,10 @@
+package dk.i1.diameter.tools;
+
 import java.io.*;
 import java.util.regex.*;
 import java.util.*;
+
+import dk.i1.diameter.Utils;
 
 /**
 ABNFConverter - convert RFC-style ABNF to java class.
